@@ -36,15 +36,28 @@ jobs:
         run: python -m houseprice_mlops.evaluation.quality_gate
 
       
+      
       - name: Inspect generated files
         if: always()
         run: |
-          echo "Working directory:"
+          echo "Current working directory:"
           pwd
+
+          echo "Repository root:"
+          echo "$GITHUB_WORKSPACE"
+
           echo "Artifacts directory:"
-          ls -la artifacts || true
-          echo "Search for generated files:"
-          find . -type f \( -name "baseline_model.joblib" -o -name "metrics.json" \) -not -path "./.venv/*"
+          ls -la "$GITHUB_WORKSPACE/artifacts" || true
+
+          echo "All generated model and metrics files:"
+          find "$GITHUB_WORKSPACE" -type f \
+            \( -name "baseline_model.joblib" -o -name "metrics.json" \) \
+            -not -path "*/.venv/*" 2>/dev/null || true
+
+          echo "Training source path configuration:"
+          grep -n -E "PROJECT_ROOT|ARTIFACTS_DIR|model_path|metrics_path" \
+            src/houseprice_mlops/pipelines/train.py
+
 
       - name: Upload model, metrics, and MLflow tracking data
         if: success()
