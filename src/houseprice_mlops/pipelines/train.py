@@ -13,7 +13,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
-PROJECT_ROOT = Path(__file__).resolve().parents[3]
+PROJECT_ROOT = Path.cwd().resolve()
 ARTIFACTS_DIR = PROJECT_ROOT / "artifacts"
 
 

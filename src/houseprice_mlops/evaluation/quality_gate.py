@@ -3,7 +3,7 @@ import math
 import sys
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parents[3]
+PROJECT_ROOT = Path.cwd().resolve()
 ARTIFACTS_DIR = PROJECT_ROOT / "artifacts"
 MAX_MAE = 0.60
 MAX_RMSE = 0.85
