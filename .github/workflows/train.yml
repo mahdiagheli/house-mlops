@@ -1,0 +1,48 @@
+
+name: Model Training
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  train:
+    name: Train, Evaluate, and Validate Model
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install project
+        run: make install
+
+      - name: Install MLflow
+        run: .venv/bin/python -m pip install "mlflow>=3.0,<4.0"
+
+      - name: Train and evaluate model
+        run: .venv/bin/python -m houseprice_mlops.pipelines.train
+
+      - name: Run model quality gate
+        run: .venv/bin/python -m houseprice_mlops.evaluation.quality_gate
+
+      - name: Upload model, metrics, and MLflow tracking data
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: house-price-model
+          path: |
+            artifacts/baseline_model.joblib
+            artifacts/metrics.json
+            artifacts/mlflow/
+          if-no-files-found: error
+          retention-days: 7

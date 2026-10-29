@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from sklearn.pipeline import Pipeline
 
-from houseprice_mlops.pipelines.train import train_evaulate
+from houseprice_mlops.pipelines.train import train_and_evaluate
 
 
 def test_pipeline_trains_and_returns_valid_metrics(
@@ -29,12 +29,12 @@ def test_pipeline_trains_and_returns_valid_metrics(
         lambda: (features, target),
     )
 
-    metrics = train_evaulate()
+    metrics = train_and_evaluate()
 
-    assert set(metrics) == {"mae", "rmse", "train_row", "test_row"}
+    assert set(metrics) == {"mae", "rmse", "train_rows", "test_rows"}
     assert metrics["mae"] >= 0
     assert metrics["rmse"] >= 0
-    assert metrics["train_row"] + metrics["test_row"] == 120
+    assert metrics["train_rows"] + metrics["test_rows"] == 120
 
     model_path = tmp_path / "baseline_model.joblib"
     metrics_path = tmp_path / "metrics.json"

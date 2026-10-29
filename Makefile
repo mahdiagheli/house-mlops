@@ -1,5 +1,5 @@
 install:
-	pip install --upgrade pip && pip install e ".[dev]"
+	pip install --upgrade pip && pip install e ".[dev,tracking]"
 test:
 	python -m pytest -q
 lint:

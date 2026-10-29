@@ -1,13 +1,13 @@
 [build-system]
-requires=["setuptools>=68","wheel"]
-build_backend="setuptools.build_meta"
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
 
 [project]
-name="house-mlops"
-version="0.1.0"
-description=""
-requires-python=">=3.11"
-dependencies=[
+name = "house-mlops"
+version = "0.1.0"
+description = "Cloud-native MLOps house price prediction project"
+requires-python = ">=3.11"
+dependencies = [
     "scikit-learn>=1.5",
     "pandas>=2.2",
     "joblib>=1.4",
@@ -15,18 +15,24 @@ dependencies=[
 ]
 
 [project.optional-dependencies]
-dev=["pytest>=8.3","ruff>=0.11"]
+dev = [
+    "pytest>=8.3",
+    "ruff>=0.11",
+]
+tracking = [
+    "mlflow>=3.0,<4.0",
+]
 
 [tool.setuptools.packages.find]
-where=["src"]
+where = ["src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
 
 [tool.ruff]
-line-length=100
-target-version="py311"
+line-length = 100
+target-version = "py311"
 
 [tool.ruff.lint]
-select=["E","F","I"]
+select = ["E", "F", "I"]
