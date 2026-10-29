@@ -27,13 +27,13 @@ jobs:
         run: make install
 
       - name: Install MLflow
-        run: .venv/bin/python -m pip install "mlflow>=3.0,<4.0"
+        run: python -m pip install "mlflow>=3.0,<4.0"
 
       - name: Train and evaluate model
-        run: .venv/bin/python -m houseprice_mlops.pipelines.train
+        run: python -m houseprice_mlops.pipelines.train
 
       - name: Run model quality gate
-        run: .venv/bin/python -m houseprice_mlops.evaluation.quality_gate
+        run: python -m houseprice_mlops.evaluation.quality_gate
 
       - name: Upload model, metrics, and MLflow tracking data
         if: success()
