@@ -1,4 +1,6 @@
+
 name: CI
+
 on:
   push:
     branches: [main]
@@ -17,19 +19,20 @@ jobs:
   quality:
     name: Code Quality and Tests
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v7
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+          cache: pip
 
       - name: Install project
         run: make install
 
-      - name: Run quality checks
+      - name: Run lint and tests
         run: make check
