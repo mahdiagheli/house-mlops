@@ -1,12 +1,13 @@
-
+import time
 from pathlib import Path
-from fastapi import Request
-from houseprice_mlops.monitoring.metrics import request_monitor
+
 import joblib
 import pandas as pd
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from pydantic import BaseModel, Field
-import time
+
+from houseprice_mlops.monitoring.metrics import request_monitor
+
 PROJECT_ROOT = Path("/app")
 MODEL_PATH = PROJECT_ROOT / "artifacts" / "cloud-run" / "baseline_model.joblib"
 
