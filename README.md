@@ -351,34 +351,6 @@ artifacts/mlflow/mlflow.db
 
 این فایل و سایر خروجی‌های آموزش در مخزن Git نگهداری نمی‌شوند؛ خروجی‌ها در GitHub Actions به‌عنوان Artifact بارگذاری می‌شوند.
 
-## 6.6 معماری کلی پروژه
-
-نمودار زیر مسیر اصلی داده و اجزای عملیاتی پروژه را نشان می‌دهد:
-
-```mermaid
-flowchart TB
-    DEV[Developer] --> GH[GitHub Repository]
-    GH --> WF[GitHub Actions]
-
-    subgraph AUTOMATION[Automated MLOps Workflow]
-        WF --> Q[Quality: Ruff and Pytest]
-        Q --> T[Train: California Housing + Ridge]
-        T --> ML[MLflow Tracking]
-        T --> E[Evaluation: MAE and RMSE]
-        E --> G{Quality Gate}
-        G -->|Pass| A[Model and Metrics Artifacts]
-        G -->|Fail| F[Stop Workflow]
-        A --> D[Docker Build]
-        D --> R[GHCR]
-    end
-
-    R -->|docker pull| CS[GitHub Codespaces]
-    CS --> C[Docker Container]
-    C --> API[FastAPI Prediction Service]
-    API --> H[/health]
-    API --> P[/predict]
-    API --> M[/metrics]
-```
 
 ## 6.7 ساختار پوشه‌های پروژه
 
