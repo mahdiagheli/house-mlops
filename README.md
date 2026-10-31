@@ -53,8 +53,6 @@ flowchart LR
     I -. Feedback .-> B
 ```
 
-> **محل قرارگیری تصویر ۱:** نمای کلی چرخه عمر MLOps، از دریافت داده تا پایش مدل  
-> فایل پیشنهادی: `docs/images/mlops-lifecycle.png`
 
 ### اهداف اصلی MLOps
 
@@ -89,8 +87,6 @@ flowchart LR
     M -. Feedback .-> P
 ```
 
-> **محل قرارگیری تصویر ۲:** نمای جامع چرخه DevOps شامل Plan، Code، Build، Test، Release، Deploy، Operate و Monitor  
-> فایل پیشنهادی: `docs/images/devops-lifecycle.png`
 
 ### شباهت‌های MLOps و DevOps
 
@@ -133,10 +129,6 @@ flowchart TD
     F --> G{Pass Quality Thresholds?}
     G -- Yes --> H[Save Model Artifact]
     G -- No --> I[Stop the Release]
-```
-
-> **محل قرارگیری تصویر ۳:** نمودار مراحل یک Pipeline یادگیری ماشین، شامل دریافت داده، آماده‌سازی، آموزش و ارزیابی  
-> فایل پیشنهادی: `docs/images/ml-pipeline.png`
 
 ### چرا Pipeline اهمیت دارد؟
 
@@ -241,10 +233,7 @@ flowchart TB
     REGISTRY --> RUNTIME[Container Runtime]
     RUNTIME --> API[Prediction API]
     API --> MONITOR[Runtime Metrics]
-```
-
-> **محل قرارگیری تصویر ۴:** نقش سرویس‌های ابری در چرخه MLOps و ارتباط Compute، Storage، CI/CD، Registry و Hosting  
-> فایل پیشنهادی: `docs/images/cloud-mlops-architecture.png`
+``
 
 ### سرویس‌های ابری مورد استفاده در این پروژه
 
@@ -259,6 +248,7 @@ flowchart TB
 # 6. پروژه عملی: House Price Prediction
 
 ## 6.1 معرفی پروژه
+<img width="1536" height="1024" alt="House Price MLOps Pipeline Infographic" src="https://github.com/user-attachments/assets/d197c93c-ca46-467c-b8fc-e90de9b01307" />
 
 این پروژه یک نمونه سبک و آموزشی از پیاده‌سازی چرخه MLOps برای پیش‌بینی قیمت خانه است. هدف اصلی، ساخت پیچیده‌ترین مدل ممکن نیست؛ هدف نمایش ارتباط میان آموزش مدل، ارزیابی، کنترل کیفیت، مدیریت Artifact، بسته‌بندی کانتینری، انتشار Image و ارائه API است.
 
@@ -390,8 +380,7 @@ flowchart TB
     API --> M[/metrics]
 ```
 
-> **محل قرارگیری تصویر ۵:** معماری اختصاصی پروژه House MLOps، از GitHub Actions تا GHCR و FastAPI  
-> فایل پیشنهادی: `docs/images/house-mlops-architecture.png`
+
 
 ## 6.7 ساختار پوشه‌های پروژه
 
@@ -675,12 +664,7 @@ docker rm -f house-price-service
 | محیط توسعه ابری | GitHub Codespaces |
 
 ---
-
-## جمع‌بندی
-
-پروژه House Price Prediction نشان می‌دهد که چگونه می‌توان یک مدل یادگیری ماشین ساده را در قالب یک فرایند عملیاتی منظم قرار داد: کد کنترل نسخه می‌شود، کیفیت آن بررسی می‌شود، مدل در محیط ابری آموزش می‌بیند، معیارهای آزمایش ثبت می‌شوند، مدل از Quality Gate عبور می‌کند، سپس API و مدل در قالب Docker Image بسته‌بندی و در GHCR منتشر می‌شوند. در نهایت کانتینر اجرا می‌شود و سرویس پیش‌بینی و معیارهای عملیاتی آن قابل مشاهده هستند.
-
-هدف پروژه، نمایش ارتباط اجزای چرخه MLOps و اهمیت خودکارسازی، ردیابی و قابلیت تکرار است؛ نه ارائه یک سامانه قیمت‌گذاری Production برای بازار واقعی مسکن.
+ Production برای بازار واقعی مسکن.
 
 ---
 
